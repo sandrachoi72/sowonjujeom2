@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>소원주점 — 육효 점사</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- React 18 CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- ▼▼▼ Firebase CDN (compat 버전 — 순서 중요) ▼▼▼ -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- ▲▲▲ Firebase CDN 끝 ▲▲▲ -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #0E0709;
+      font-family: 'Noto Serif KR', serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    #root { min-height: 100vh; }
+
+    /* 스크롤바 숨김 */
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+
+    /* 입력 요소 기본 스타일 초기화 */
+    input, textarea, button, select {
+      font-family: 'Noto Serif KR', serif;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- require 심 (Babel 컴파일된 CommonJS 모듈을 브라우저에서 실행) -->
+  <script>
+    var exports = {};
+    var module = { exports: exports };
+    function require(mod) {
+      if (mod === 'react') return window.React;
+      if (mod === 'react-dom') return window.ReactDOM;
+      return {};
+    }
+  </script>
+
+  <!-- ▼ GitHub Actions가 자동 생성하는 컴파일된 JS 파일 -->
+  <script src="소원주점_v12.js"></script>
+
+  <!-- 앱 마운트 -->
+  <script>
+    var App = module.exports['default'] || module.exports;
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      React.createElement(App)
+    );
+  </script>
+</body>
+</html>
