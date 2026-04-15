@@ -1,0 +1,38 @@
+name: JSX → JS 자동 빌드
+
+on:
+  push:
+    paths:
+      - '소원주점_v12.jsx'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Babel 설치
+        run: npm install --save-dev @babel/core @babel/cli @babel/preset-react @babel/preset-env
+
+      - name: JSX → JS 변환
+        run: |
+          npx babel 소원주점_v12.jsx \
+            --presets @babel/preset-react,@babel/preset-env \
+            -o 소원주점_v12.js
+
+      - name: 변환된 JS 파일 커밋 & 푸시
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          git add 소원주점_v12.js
+          git diff --staged --quiet || git commit -m "자동빌드: 소원주점_v12.jsx → 소원주점_v12.js"
+          git push
